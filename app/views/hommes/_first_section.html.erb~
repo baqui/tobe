@@ -1,0 +1,28 @@
+<div class="section container-fluid first-section" id="first-section">
+	
+	<%= render partial: 'lewe_menu' %> 
+	
+  <div class="slide container-fluid first-slide-top"><!-- początek slide 1 --> 
+					<div class="matrix-menu-column"><!-- menu-boczne-kolumna --> 
+          			<%= render partial: 'boczny_pasek' %>
+          </div><!-- koniec menu boczne --> 		
+				
+    <div class="row main-row"><!-- główny row --> 
+               
+<!--mc--> <div class="first-main-content">	
+            <div class="first-logo">logo</div>
+            <div class="first-title">title</div>
+            <div class="first-arrow">arrow</div>
+<!--kmc--></div>
+          
+          
+          
+    </div><!-- koniec główny row --> 
+			
+  </div><!-- koniec slide 1 --> 
+    <div class="slide container-fluid"> <!-- generuje .fp-slidesContainer dodawany przez wtyczke fullpage --> 
+    </div>
+
+
+		
+</div><!-- koniec main section --> 

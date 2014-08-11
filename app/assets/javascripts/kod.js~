@@ -1,0 +1,311 @@
+$(document).ready( function(){
+
+	$('#fullpage').fullpage({
+		//sectionsColor: ['#35E8A7', '#35C6E8', '#35E8A7'],
+		verticalCentered: false,
+        resize : false,
+        //anchors:['firstSlide', 'secondSlide'],
+        scrollingSpeed: 700,
+        //easing: 'easeInQuart',
+        menu: false,
+        navigation: false,
+        navigationPosition: 'right',
+        slidesNavigation: false,
+        //slidesNavPosition: 'bottom',
+        loopBottom: false,
+        loopTop: false,
+        loopHorizontal: true,
+        autoScrolling: true,
+        scrollOverflow: false,
+        css3: false,
+        //paddingTop: '3em',
+        //paddingBottom: '10px',
+        normalScrollElements: '.calendarium-col',
+        //normalScrollElementTouchThreshold: 5,
+        keyboardScrolling: true,
+        //touchSensitivity: 15,
+        continuousVertical: false,
+        animateAnchor: true,
+        sectionSelector: '.section',
+        slideSelector: '.slide',
+		onLeave: function(index, nextIndex, direction){
+		$('.indicator').removeClass('acc')
+		$('*[data-indicator='+nextIndex+']').addClass('acc');
+		
+			if(nextIndex == 4) {
+				numbers();
+			}
+		
+		},
+	});
+	//koniec inicjalizacji fullpaga
+	
+	//funkcja wysuwająca boczne menu, sprawdza czy menu jest wysunięte przez data
+	$('.fp-slidesContainer').data('name', 'lewo');
+	$('.menu-glyphicon, .tx-close').click( function(){
+	$('.fp-slidesContainer').toggleClass( function(){
+		var name = $(this).data('name')
+		if(name=='lewo'){
+		$(this).data('name','prawo');
+		$(this).removeClass('przesun-menu-prawo');
+		$('.fixed-left-menu').css({'left': 0});
+		return 'przesun-menu-lewo'
+		}
+		else{
+		$(this).data('name','lewo');
+		$(this).removeClass('przesun-menu-lewo');
+		$('.fixed-left-menu').css({'left': -200});
+		return 'przesun-menu-prawo'
+		}
+	});//koniec toggle
+	})//koniec click koniec funkcji do menu;
+	
+	//usun strzałko do menu
+	$('.first-section .fp-controlArrow').remove();
+	$('#second-section .fp-controlArrow').remove();
+	
+	$('.indicatorli a div').click( function(e){
+	var where = $(this).data('indicator');
+	e.preventDefault();
+	$.fn.fullpage.moveTo(where);
+	});
+	
+	$('.wypelniacz').click( function(e){
+		var name = $(this).data('name');
+		$.fn.fullpage.moveTo(3, 1);
+	});
+	
+	
+	function giveMeDimensions(elm){
+	var height =	 $(elm).height();
+	var width = 	 $(elm).width()
+	var outerw= 	 $(elm).outerWidth();
+	var outerh= 	 $(elm).outerHeight();
+	var innerh= 	 $(elm).innerHeight();
+	var innerw= 	 $(elm).innerWidth();
+	var offset= 	 $(elm).offset();
+	//var offsetparent=$(elm).offsetParent();
+	var position=	 $(elm).position();
+	console.log(
+	"height: ",height+'\n'+
+	"width: ",width+'\n'+
+	"outerWidth: ",outerw+'\n'+
+	"outerHeight: ",outerh+'\n'+
+	"innerHeight: ",innerh+'\n'+
+	"innerWidth: ",innerw+'\n'+
+	"offset-top: ",offset.top+'\n'+
+	"offset-left: ",offset.left+'\n'+
+	//"offsetParent: ",offsetparent+'\n'+
+	"position-top: ",position.top+'\n'+
+	"position-left: ",position.left+'\n'
+	)};
+	
+	//pojemnik który pozniej jest zastępowany przez slajdy
+	$('.second-section  .fp-slides  .fp-slidesContainer .wynik').before( "<div class='ajax-container'></div>" );
+	
+	
+	
+		
+	
+	
+		function processData(data){
+			var length = data.questions.length;
+			var datatoinsert = "";
+		for(var i=0; i < length; i++){
+			datatoinsert+= "<div class='slide container-fluid fp-slide'>"+"<div class='question-wrapper' id='question_id'>"+"<h1>"+ data.questions[i].title +"</h1>" + template(data.questions[i]) +  "<div class='buttons-wrapper'><div class='btn btn-default prev-button'>następne</div><div class='btn btn-default next-button'>następne</div></div>"+"</div>" +"</div>";
+		}
+		console.log(length)
+		return {d: datatoinsert, len: length};
+		};
+		
+		
+		
+		function template(question){//returning 1question and 4 answers
+					var answers = question.answers
+					var stringToReturn = '';
+					 for(var i = 0; i < answers.length; i++){
+						var answer = question.answers[i],
+							id = answer.id,
+							value= answer.value,
+							name= answer.name,
+							title= answer.title;
+						stringToReturn+= "<div class='radio answer-wrapper'><label><input type='radio'  id='"+id+"' value='"+value+"' name='"+name+"'>" + title +"</label></div>"
+						 }
+					 //console.log(stringToReturn,'bumbum')
+					return stringToReturn;
+		}
+	
+		function getTest(what){
+		var myurl = "http://localhost/"+ what;
+		$.ajax({
+		url: myurl,
+		cache: false,
+		error: function(jqXHR,textStatus,errorThrown ){console.log('error')},
+		}).done( function(data){
+			var obj = processData(data);
+			$('.ajax-container').replaceWith(obj.d);
+			$.fn.fullpage.reBuild();
+			$('.second-section  .fp-slides  .fp-slidesContainer').css({"width": (obj.len+3)*100 + '%'});
+			$('.second-section  .fp-slides  .fp-slidesContainer .slide').css({"width": 100/(obj.len+3) + '%'}).iCheck({
+                checkboxClass: 'icheckbox_flat-orange',
+                radioClass: 'iradio_flat-orange'
+              });
+			  
+			  $('.prev-button').click( function(){
+				$.fn.fullpage.moveSlideRight();
+			  });
+			  $('.next-button').click( function(){
+					$.fn.fullpage.moveSlideLeft();
+			  });
+		});
+	};
+	
+	//uwaga trzeba zachować strukturę danych json
+	$('.test-names a').click( function(e){
+		var what = $(this).attr('href')
+		getTest(what);
+		$('.start-test-btn').fadeIn();
+		e.preventDefault();
+	});
+	
+	$('.start-test-btn').click( function(){
+		$.fn.fullpage.moveSlideRight();
+	});
+	//zostawić bo to odpowiada za wszystkie style boxów
+	$('input').iCheck({
+                checkboxClass: 'icheckbox_flat-orange',
+                radioClass: 'iradio_flat-orange'
+              });
+			  
+			  
+			  
+	//$('ins').click( function(){
+		//$(this).parent().removeClass('iradio_flat-orange').addClass('iradio_flat-red');
+	//})	
+	
+	var storage = $.localStorage;
+	$('input').on('ifChecked', function(event){
+		var value = $(this).val(),//input który był zaznaczony
+			id = $(this).attr('id');
+		 storage.set(id,value);
+
+	});
+	
+	$('input').on('ifUnchecked', function(event){
+		var value = $(this).val();//input który był zaznaczony
+		var id = $(this).attr('id');
+		storage.remove(id);
+	});
+	
+	function setvalues(){
+	  var inputs = $('.lewy-test').find('input'),
+	      inputs_checked = $('.lewy-test').find('input:checked'),
+		  len = $('.lewy-test').find('input').length;
+		for( var i=0; i<len; i++){
+		var input = inputs[i];
+		//console.log(inputs[i])
+		var id = input.id;
+			if(storage.isSet(id)){
+			var value = storage.get(id);
+			input.value = value;
+			input.checked = true;
+			input.parentNode.className += ' checked';
+			}
+		}
+		//console.log(inputs_checked.length);
+		
+		
+	}
+	
+	//setvalues();
+
+	$(function() {
+    $('.chart').easyPieChart({
+        barColor:'#5A3D03',
+		trackColor: '#F1A602',
+        scaleColor:false,
+		//scaleLength: '10',
+        lineWidth:20,
+        lineCap:'butt',
+		size: '200',
+		rotate: '180',
+		animate: { duration: 1000, enabled: true },
+		easing: 'ease-in',
+		onStep: function(from, to, percent) {
+				$(this.el).find('.percent').text(Math.round(percent))},
+
+    });
+	});
+	
+	var n = 3; //number of inputs in single question
+	function drawPieChart(nmb_in){
+		var input = $('#second-section').find("input");
+		var len = input.length;
+		var nmb_quest = len/nmb_in;
+		var score = 0;
+			for(var i=0; i<len; i++){
+				if(input[i].checked == true){
+				score += parseInt(input[i].value);//uwaga value pobierane z inputs jest stringiem
+				}
+			}
+
+		return {scor: score/nmb_quest, t_ans:score , f_ans:(nmb_quest-score) , perf: score/nmb_quest,};
+
+	
+	}//koniec draw pie chart
+	
+	
+	$('.check-score').click( function(){
+		var func = drawPieChart(n);
+			t_ans = func.t_ans,
+			f_ans = func.f_ans ,
+			perf =  func.perf,
+			score = func.scor;
+		$('.chart').data('easyPieChart').update(score*100);
+		$('#true-answers-sum').text(t_ans);
+		$('#false-answers-sum').text(f_ans);
+		$('#performance-sum').text(Math.round(perf*100)+'%');
+
+	});
+	
+	$('h1').click( function(){
+	$(this).animateNumber({ number: 165 });
+	})
+	
+	function first_animate(){
+	$('h1.left-number').animateNumber({ number: 165 });	
+	}
+	function second_animate(){
+	$('h1.middle-number').animateNumber({ number: 165 });
+	}
+	
+	function third_animate(){
+	$('h1.right-number').animateNumber({ number: 165 });
+	}
+	
+	$.wait = function(time) {
+	return $.Deferred( function(dfd){
+		setTimeout(dfd.resolve, time)
+	})
+}
+
+
+
+
+
+
+function numbers(){
+$.wait(1500).then( function(){first_animate()}).then( function(){ 
+$.wait(1000).then( function(){second_animate()})}).then( function(){ 
+$.wait(2000).then( function(){third_animate()})})
+}
+
+
+	
+	
+//koniec kodu	
+});
+
+
+
+

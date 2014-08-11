@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title> Storage.js</title>
+<!-- Latest compiled and minified JavaScript -->
+
+<!--tutaj wrzuć biblioteki nad którymi aktualnie pracujesz -->
+<script src="http://cdn.jsdelivr.net/cookiejs/0.1/cookie.min.js"></script>
+<script src="http://cdn.jsdelivr.net/storagejs/2.0/storage.js"></script>
+
+
+
+<link rel="stylesheet" href="jquery.fullPage.css"/>
+
+<link href="iCheck-master/skins/flat/orange.css" rel="stylesheet">
+<link href="iCheck-master/skins/flat/red.css" rel="stylesheet">
+<script src="jquery.easypiechart.js"></script>
+<script src="jquery.easypiechart.js"></script>
+<script src="jquery.animateNumber.js"></script>
+
+<script src="iCheck-master/icheck.js"></script>
+
+
+<script src="jquery.storageapi.js"></script>
+
+
+<script src="jquery.fullPage.js"></script>
+<!--koniec aktualnie opracowywanych bibliotek -->
+<link rel="stylesheet" href="bootstrap.min.css"/>
+<link rel="stylesheet" href="mycss.css"/>
+<link rel="stylesheet" href="3dnav-left.css"/>
+<script src="kod.js"> </script>
+<!--koniec wszystkich skryptów -->
+</head>
+<body>
+
+
+
+
+	
+	
+	
+<div id="fullpage">
+
+
+
+	
+
+</div>
+	
+</body>
+</html>
+
+
+
+

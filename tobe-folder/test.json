@@ -1,0 +1,8 @@
+{
+"questions": [
+{"title": "Default title","answers": [{"title":"default answer", "id": "answer_1", "value":"1", "name":"question_1"},{"title":"default answer", "id": "answer_2", "value":"0", "name":"question_1"},{"title":"default answer", "id": "answer_3", "value":"0", "name":"question_1"} ]},
+{"title": "Default title","answers": [{"title":"default answer", "id": "answer_4", "value":"1", "name":"question_2"},{"title":"default answer", "id": "answer_5", "value":"0", "name":"question_2"},{"title":"default answer", "id": "answer_6", "value":"0", "name":"question_2"} ]},
+{"title": "Default title","answers": [{"title":"default answer", "id": "answer_7", "value":"1", "name":"question_3"},{"title":"default answer", "id": "answer_8", "value":"0", "name":"question_3"},{"title":"default answer", "id": "answer_9", "value":"0", "name":"question_3"} ]}
+]
+}
+

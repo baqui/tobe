@@ -1,0 +1,27 @@
+<div class="section second-section container-fluid" id="second-section">	
+    
+    <div class="slide container-fluid"><!-- początek slide 1 --> 
+    <div class="matrix-menu-column">
+            			<%= render partial: 'boczny_pasek' %>
+    </div>
+    <!-- główny row --> 
+      <div class="row main-row">
+          
+          <div class="second-main-content">	
+            <div class="second-left-side">
+                <div class="second-logo">logo</div>
+                <div class="second-tel">telefon</div>
+                <div class="second-email">email</div>
+                <div class="second-facebook">facebook</div>
+                <div class="second-address">address</div>
+            </div>
+            <div class="second-right-side">right</div>
+            </div>
+      </div>
+    <!-- koniec główny row -->
+    </div><!-- koniec slide 1 -->
+    <div class="slide container-fluid"> <!-- generuje .fp-slidesContainer dodawany przez wtyczke fullpage --> 
+    </div>
+	
+</div><!-- koniec main section --> 
+

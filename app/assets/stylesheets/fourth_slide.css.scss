@@ -1,0 +1,38 @@
+.fourth-main-content {
+@extend .col-lg-12, .col-md-12, .col-sm-12, .col-xs-12;
+padding-left: 50px;
+height: 100%;
+background: gray;
+}
+
+.fourth-headers{
+height: 20%;
+background: gray;
+}
+.fourth-numbers{
+height: 20%;
+background: gray;
+@extend .hidden-sm,.hidden-xs;
+}
+.fourth-footers{
+height: 20%;
+background: gray;
+}
+
+.fourth-kurs-info{
+@extend .col-lg-4, .col-md-4, .medium-check, .large-check;
+@extend .col-sm-12, .col-xs-12, .small-check, .xsmall-check;
+height: 100%;
+background: $brand-footer;
+}
+.fourth-school-number{
+@extend .col-lg-4, .col-md-4,.medium-check,.large-check;
+height: 100%;
+background: $brand-primary;
+}
+.fourth-footer{
+@extend .col-lg-4, .col-md-4, .medium-check, .large-check;
+@extend .col-sm-12, .col-xs-12, .small-check, .xsmall-check;
+height: 100%;
+background: $brand-danger;
+}

@@ -1,0 +1,40 @@
+.third-main-content {
+@extend .col-lg-12, .col-md-12, .col-sm-12, .col-xs-12;
+padding-left: 50px;
+height: 100%;
+background: $brand-footer;
+}
+
+.third-left{
+@extend .col-lg-3,.col-md-3, .large-check, .hidden-sm,.hidden-xs;
+height: 100%;
+background: $brand-primary;
+};
+.third-middle{
+@extend .col-lg-6, .col-md-6, .large-check;
+@extend .col-sm-12, .col-xs-12, .xsmall-check,.small-check;
+height: 100%;
+background: $brand-info;
+};
+.third-right{
+@extend .col-lg-3, .col-md-3, .large-check, .hidden-sm, .hidden-xs;
+height: 100%;
+background: $brand-danger;
+};
+
+.third-top-title{
+margin-top: 20%;
+height: 10%;
+@extend .xsmall-check,.small-check, .medium-check,.large-check;
+}
+.third-test{
+background: gray;
+height: 40%;
+@extend .xsmall-check,.small-check, .medium-check,.large-check;
+}
+.third-bottom-title{
+height: 10%;
+background: white;
+@extend .xsmall-check,.small-check, .medium-check,.large-check;
+}
+

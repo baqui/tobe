@@ -1,0 +1,42 @@
+<div class="section container-fluid" id="fourth-section">
+
+    <div class="slide container-fluid"><!-- początek slide 1 --> 
+    	<div class="matrix-menu-column"><!-- menu-boczne-kolumna --> 
+    			<%= render partial: 'boczny_pasek' %>
+    </div><!-- koniec menu boczne -->
+    <!-- główny row --> 
+     <div class="row main-row">
+        <div class="fourth-main-content">
+              
+           <div class="row fourth-headers">
+            <div class="fourth-kurs-info">kurs info</div>
+            <div class="fourth-kurs-info">kurs info</div>
+            <div class="fourth-kurs-info">kurs info</div>
+           </div>
+           <div class="fourth-numbers">
+            <div class="fourth-school-number">school number</div>
+            <div class="fourth-school-number">school number</div>
+            <div class="fourth-school-number">school number</div>
+           </div>
+           <div class="fourth-footers">
+            <div class="fourth-footer">footer</div>
+            <div class="fourth-footer">footer</div>
+            <div class="fourth-footer">footer</div>
+           </div>
+        
+        </div>   
+     </div>
+    <!-- koniec główny row -->
+    </div><!-- koniec slide 1 --> 
+    <div class="slide container-fluid"> <!-- generuje .fp-slidesContainer dodawany przez wtyczke fullpage --> 
+    </div>	              
+
+</div><!-- koniec main section --> 
+          
+          
+          
+          
+          
+          
+          
+

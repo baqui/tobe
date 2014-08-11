@@ -1,0 +1,58 @@
+$brand-primary: #9033A6;
+$brand-success: #592067;
+$brand-info: #C747E6;
+$brand-warning: #D24BF3;
+$brand-danger: #B13FCD;
+$brand-footer: #FFFFFF; 
+.xsmall-check {
+@media ( max-width: $screen-xs-max){ 
+background: #DF91A7;
+border: 3px solid black;}
+}
+
+.small-check {
+@media ( min-width: $screen-sm-min) and (max-width: $screen-sm-max){ 
+background: $brand-primary;
+border: 3px solid black;}
+}
+
+.medium-check {
+@media ( min-width: $screen-md-min) and (max-width: $screen-md-max){ 
+background: $brand-success;
+border: 3px solid black;}
+}
+
+.large-check {
+@media ( min-width: $screen-lg-min){ 
+background: $brand-info;
+border: 3px solid black;}
+}
+
+
+.matrix-menu-column{
+position: absolute;
+z-index: 600;
+}
+
+.first-main-content {
+@extend .col-lg-12, .col-md-12, .col-sm-12, .col-xs-12;
+background: gray;
+height: 100%;
+padding-left: 50px;
+}
+
+.first-logo{
+@extend .col-lg-4, .col-md-4, .large-check, .medium-check;
+@extend .col-sm-12, .col-xs-12, .small-check, .xsmall-check;
+height: 30%;
+}
+.first-title{
+@extend .col-lg-4, .col-md-4, .col-md-offset-2,.col-lg-offset-2,.medium-check, .large-check; 
+@extend .col-sm-8, .col-sm-offset-4, .col-xs-8, .col-xs-offset-4, .small-check, .xsmall-check;
+height: 40%;
+}
+.first-arrow{
+@extend .col-lg-2,.col-md-2, .col-md-offset-8,  .col-lg-offset-8,.medium-check, .large-check;
+@extend .col-sm-4, .col-sm-offset-8, .col-xs-2, .col-xs-offset-10, .small-check, .xsmall-check;
+height: 30%;
+}
